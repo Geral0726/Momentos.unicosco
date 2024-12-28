@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentos Únicos - Pastelería Artesanal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #d8b5ff;
+            --secondary-color: #e6ccff;
+            --text-color: #4a0e4e;
+            --background-color: #f9f0ff;
+            --accent-color: #9d4edd;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, var(--background-color) 0%, #fff1ff 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        #app {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .animated-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 4rem;
+            color: var(--text-color);
+            animation: colorChange 5s infinite alternate, pulse 2s infinite alternate;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        @keyframes colorChange {
+            0% { color: #8a2be2; }
+            50% { color: #9370db; }
+            100% { color: #ba55d3; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        nav {
+            background-color: var(--primary-color);
+            padding: 15px;
+            border-radius: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 8px 15px;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+            border-radius: 20px;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-color);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        nav a:hover::after {
+            transform: scaleX(1);
+        }
+
+        nav a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        section {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        .history-section {
+            background-image: url('pastel/fotos/fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+        }
+
+        .history-content {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .decoration {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        .cake-animation {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%238a2be2" d="M12 6a2 2 0 0 0 2-2c0-.38-.1-.73-.29-1.03L12 0l-1.71 2.97c-.19.3-.29.65-.29 1.03 0 1.1.9 2 2 2zm4.6 9.99l-1.07-1.07-1.08 1.07c-1.3 1.3-3.58 1.31-4.89 0l-1.07-1.07-1.09 1.07C6.75 16.64 5.88 17 4.96 17c-.73 0-1.4-.23-1.96-.61V21c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-4.61c-.56.38-1.23.61-1.96.61-.92 0-1.79-.36-2.44-1.01zM18 9h-5V7h-2v2H6c-1.66 0-3 1.34-3 3v1.54c0 1.08.88 1.96 1.96 1.96.52 0 1.02-.2 1.38-.57l2.14-2.13 2.13 2.13c.74.74 2.03.74 2.77 0l2.14-2.13 2.13 2.13c.37.37.86.57 1.38.57 1.08 0 1.96-.88 1.96-1.96V12C21 10.34 19.66 9 18 9z"/></svg>') no-repeat center center;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        .sprinkles-animation {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle fill="%238a2be2" cx="5" cy="5" r="1"/><circle fill="%238a2be2" cx="10" cy="7" r="1"/><circle fill="%238a2be2" cx="15" cy="5" r="1"/><circle fill="%238a2be2" cx="20" cy="7" r="1"/><circle fill="%238a2be2" cx="5" cy="15" r="1"/><circle fill="%238a2be2" cx="10" cy="17" r="1"/><circle fill="%238a2be2" cx="15" cy="15" r="1"/><circle fill="%238a2be2" cx="20" cy="17" r="1"/></svg>') no-repeat center center;
+            animation: sparkle 7s infinite linear;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .product-item {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 16px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .product-item h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .product-item p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .social-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .social-icon svg {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-icon:hover svg {
+            transform: rotate(15deg);
+            color: var(--accent-color);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        footer p:first-child {
+            margin-bottom: 10px;
+        }
+
+        .about-me-content, .environmental-impact-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .about-me-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid var(--primary-color);
+        }
+
+        .about-me-text h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .environmental-impact-content ul {
+            text-align: left;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .environmental-impact-content li {
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .environmental-impact-content li:nth-child(1) { animation-delay: 0.1s; }
+        .environmental-impact-content li:nth-child(2) { animation-delay: 0.2s; }
+        .environmental-impact-content li:nth-child(3) { animation-delay: 0.3s; }
+        .environmental-impact-content li:nth-child(4) { animation-delay: 0.4s; }
+        .environmental-impact-content li:nth-child(5) { animation-delay: 0.5s; }
+
+        .environmental-impact-content h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .environmental-impact-content ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .about-me-content {
+                flex-direction: row;
+                text-align: left;
+            }
+
+            .about-me-image {
+                margin-right: 30px;
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="header-content">
+                <img src="fotos/logos.jpg" class="logo">
+                <div>
+                    <h1 class="animated-title">Momentos Únicos</h1>
+                    <p class="subtitle">Pastelería Artesanal</p>
+                </div>
+            </div>
+        </header>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#nuestra-historia">Nuestra Historia</a>
+            <a href="#sobre-mi">Sobre Mí</a>
+            <a href="#impacto-ambiental">Impacto Ambiental</a>
+            <a href="#productos">Productos</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+        <main>
+            <section id="inicio">
+                <h2>Bienvenidos a Momentos Únicos</h2>
+                <p>Nos comprometemos a utilizar ingredientes de origen sostenible, implementar prácticas de economía circular, y promover un impacto positivo en nuestra comunidad</p>
+                <div class="decoration cake-animation"></div>
+            </section>
+            <section id="nuestra-historia" class="history-section">
+                <div class="history-content">
+                    <h2>Nuestra Historia</h2>
+                    <p>Momentos Únicos nació en 2023, en la ciudad de Cali, con un objetivo claro: ofrecer pastelería artesanal de alta calidad que sea tanto un deleite para los sentidos como una elección responsable para el planeta. Somos un equipo apasionado por la repostería, liderado por Carmen Henao quien decidió transformar su amor por los postres en un negocio que refleje sus valores de sustentabilidad y compromiso con la comunidad.</p>
+                    <p>En Momentos Únicos, cada paso de nuestro proceso de producción está diseñado para ser lo más respetuoso posible con el medio ambiente. Utilizamos ingredientes locales y orgánicos, seleccionados cuidadosamente de proveedores que comparten nuestros valores. Hemos implementado un sistema de reciclaje y reducción de desperdicios que nos permite minimizar nuestro impacto ambiental. Además, nuestros empaques son 100% biodegradables y reciclables, y siempre estamos buscando nuevas formas de mejorar nuestra sostenibilidad.</p>
+                </div>
+            </section>
+            <section id="sobre-mi">
+                <h2>Sobre Mí</h2>
+                <div class="about-me-content">
+                    <img src="fotos/sobremi.png" alt="Carmen Henao" class="about-me-image">
+                    <div class="about-me-text">
+                        <h3>Carmen Henao</h3>
+                        <p>Tengo 48 años, paciente con enfermedad autoinmune y discapacidad física y psicosocial, Profesional en  Administracion de empresa, con múltiples diplomados en el sector gastronomico. Adicional cursos en pasteleria,panaderia y reposteria,estoy participando en el diplomado Desarrollo economico , estoy realizando el Proyecto 1,2 tres creer, crear y crecer </p>
+                        <p>Tambien estoy participando en todas las rutas de conexion de compromiso valle; estoy en Recibiendo capacitación y orientación en la Cámara de Comercio de Cali. Carmen Henao Londoño – Emprendedora e instructora de pasteleria y reposteria.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="impacto-ambiental">
+                <h2>Nuestro Impacto Ambiental</h2>
+                <div class="environmental-impact-content">
+                    <h2>Uso de Ingredientes Sostenibles:</h2>
+                    <p>Ingredientes Locales: Compramos ingredientes de proveedores locales reduce las emisiones de carbono asociadas con el transporte y apoya a la economía local.
+                        Orgánicos y de Comercio Justo: Priorizar ingredientes orgánicos y de comercio justo asegura que los productos se cultiven sin pesticidas dañinos y en condiciones laborales justas, lo que reduce el impacto ambiental y social.</p>
+                    <h2>Optimización de Procesos:</h2>
+                    <p>Reducción de Desperdicios: Implementamos un sistema de gestión de residuos que minimiza el desperdicio de alimentos. Por ejemplo reutilizamos ingredientes sobrantes en otros productos 
+                        Cocina Eficiente: Utilizamos equipos de cocina energéticamente eficientes y optimizamos los procesos de cocción para reducir el consumo de energía</p>
+                    <h2>Empaques Ecológicos:</h2>
+                    <p>Biodegradables y Reciclables: Utilizamos empaques fabricados con materiales biodegradables y reciclables</p>
+                    <h2>Promoción de Envases Reutilizables: </h2>
+                    <p>Ofrecemos descuentos o incentivos a los clientes que traigan sus propios envases reutilizables.</p>
+                    <ul>
+                        <li>Utilizamos ingredientes orgánicos y de origen local siempre que es posible.</li>
+                        <li>Nuestros empaques son 100% biodegradables y reciclables.</li>
+                        <li>Hemos implementado un sistema de reciclaje y compostaje para reducir nuestros desperdicios.</li>
+                        <li>Utilizamos energía renovable en nuestras instalaciones.</li>
+                        <li>Ofrecemos descuentos a clientes que traen sus propios recipientes reutilizables.</li>
+                    </ul>
+                    <p>Creemos que cada pequeña acción cuenta. Al elegir Momentos Únicos, no solo estás disfrutando de deliciosos pasteles, sino también contribuyendo a un futuro más sostenible para nuestro planeta.</p>
+                </div>
+            </section>
+            <section id="productos">
+                <h2>Nuestros Pasteles</h2>
+                <p>Nuestros productos se enfocaron en la temática de La COP16/CMP6 que es la 16ª edición de la Conferencia de las Partes de la Convención Marco de Naciones Unidas sobre el Cambio Climático, y la 6ª Conferencia de las Partes actuando como Reunión de las Partes del Protocolo de Kyoto.</p>
+                <div class="product-grid">
+                    <div class="product-item">
+                        <img src="https://images.unsplash.com/photo-1586788680434-30d324b2d46f?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=400&q=80" alt="Red Velvet" class="product-image">
+                        <h3>Red Velvet</h3>
+                        <p>Delicioso pastel de terciopelo rojo con un suave frosting de queso crema.</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=400&q=80" alt="Torta Genovesa" class="product-image">
+                        <h3>Torta Genovesa</h3>
+                        <p>Clásica torta italiana ligera y esponjosa, perfecta para cualquier ocasión.</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=400&q=80" alt="Galletas" class="product-image">
+                        <h3>Galletas</h3>
+                        <p>Variedad de galletas crujientes y deliciosas para todos los gustos.</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=400&q=80" alt="Torta Gourmet" class="product-image">
+                        <h3>Torta Gourmet</h3>
+                        <p>Elegante torta gourmet con ingredientes premium y decoración sofisticada.</p>
+                    </div>
+                    <div class="product-item">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=400&q=80" alt="Torta de Chocolate" class="product-image">
+                        <h3>Torta de Chocolate</h3>
+                        <p>Irresistible torta de chocolate, húmeda y rica, para los amantes del cacao.</p>
+                    </div>
+                </div>
+                <div class="decoration sprinkles-animation"></div>
+            </section>
+            <section id="contacto">
+                <h2>Contáctanos</h2>
+                <p>¿Listo para endulzar tu día? ¡Haz tu pedido especial hoy y déjanos crear un momento único para ti!</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/momentos.unicosco?igsh=c2sybzlrMzcyYjdt" target="_blank" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        <span>Síguenos en Instagram</span>
+                    </a>
+                    <a href="https://wa.link/3p1hn7" target="_blank" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                        <span>Chatea por WhatsApp</span>
+                    </a>
+                    <a href="https://www.canva.com/design/DAF9Xc7kCdw/sSndh3IJzxDhYev8t6a6qw/edit" target="_blank" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        <span>Ver Catálogo</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2023 Momentos Únicos Pastelería. Todos los derechos reservados.</p>
+            <p>Cali Valle- Tel: + 57 3208185533</p>
+        </footer>
+    </div>
+</body>
+</html>
+
